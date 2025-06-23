@@ -27,7 +27,11 @@ This project is a full-featured e-commerce management system built with **Larave
 ## 🖥️ Screenshots
 
 > ![dashboard](https://github.com/user-attachments/assets/d016b593-6da3-4f7e-970b-1a5b74190aab)
-> 
+> ![products](https://github.com/user-attachments/assets/d847b923-fb44-442a-890f-0bd03ed5fbcb)
+> ![add product](https://github.com/user-attachments/assets/2f777e7c-5c26-4ce5-93e4-985e23c9a83b)
+> ![categories](https://github.com/user-attachments/assets/09852639-6ed8-45d0-b028-534bfd7043c9)
+> ![orders](https://github.com/user-attachments/assets/e7842a29-89bc-4393-9ff3-dd1b756407c0)
+> ![order details](https://github.com/user-attachments/assets/77e741a2-764d-4c1e-b333-72a4621b58a8)
 
 ---
 
