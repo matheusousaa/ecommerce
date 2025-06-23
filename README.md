@@ -26,7 +26,8 @@ This project is a full-featured e-commerce management system built with **Larave
 
 ## 🖥️ Screenshots
 
-> Add screenshots/gifs here of the product listing, forms, and dashboard.
+> ![dashboard](https://github.com/user-attachments/assets/d016b593-6da3-4f7e-970b-1a5b74190aab)
+> 
 
 ---
 
