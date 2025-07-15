@@ -1,66 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 E-Commerce Platform (Laravel + Vue.js + Inertia.js)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a full-featured e-commerce management system built with **Laravel**, **Vue.js**, and **Inertia.js**. It allows users to manage products, categories, and orders with authentication and role-based access, serving as a portfolio piece to showcase backend and frontend integration.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Live Demo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> ⚠️ Deployment in progress — system currently available only locally.  
+> A live demo may be added soon.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ✨ Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- 🔐 **Authentication** (Login, Register, Profile)
+- 📦 **Product CRUD** (Create, Read, Update, Delete)
+- 🗂️ **Category Management**
+- 📑 **Order Management**
+- 📸 **Image Upload**
+- 📊 **Dashboard Overview**
+- 🛠️ Built with **Laravel 10**, **Vue 3**, **Inertia.js**, **Tailwind CSS**
+- 🌐 PostgreSQL support (MySQL-compatible)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🖥️ Screenshots
 
-## Laravel Sponsors
+> ![dashboard](https://github.com/user-attachments/assets/d016b593-6da3-4f7e-970b-1a5b74190aab)
+> ![products](https://github.com/user-attachments/assets/d847b923-fb44-442a-890f-0bd03ed5fbcb)
+> ![add product](https://github.com/user-attachments/assets/2f777e7c-5c26-4ce5-93e4-985e23c9a83b)
+> ![categories](https://github.com/user-attachments/assets/09852639-6ed8-45d0-b028-534bfd7043c9)
+> ![orders](https://github.com/user-attachments/assets/e7842a29-89bc-4393-9ff3-dd1b756407c0)
+> ![order details](https://github.com/user-attachments/assets/77e741a2-764d-4c1e-b333-72a4621b58a8)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🧰 Tech Stack
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+**Backend:**
+- Laravel 10
+- PostgreSQL (or MySQL-compatible)
+- Eloquent ORM
 
-## Contributing
+**Frontend:**
+- Vue 3
+- Inertia.js
+- Tailwind CSS
+- Vite
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Other:**
+- Authentication via Laravel Breeze (Inertia stack)
+- File upload via Laravel Storage
+- Session & database cache
+- `.env` based environment configuration
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## ⚙️ Getting Started
 
-## Security Vulnerabilities
+### Prerequisites
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- PHP 8.2+
+- Composer
+- Node.js + npm
+- PostgreSQL (or MySQL)
+- Git
 
-## License
+### Installation
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+git clone https://github.com/matheusousaa/ecommerce.git
+cd ecommerce
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
