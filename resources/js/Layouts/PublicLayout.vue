@@ -44,7 +44,8 @@ const showingNavigationDropdown = ref(false);
 
                         <div class="hidden sm:ms-6 sm:flex sm:items-center">
                             <!-- Settings Dropdown -->
-                            <div class="relative ms-3">
+
+                            <div v-if="$page.props.auth?.user" class="relative ms-3">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
@@ -52,7 +53,7 @@ const showingNavigationDropdown = ref(false);
                                                 type="button"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                             >
-                                                <!-- {{ $page.props.auth.user.name }} -->
+                                                {{ $page.props.auth.user.name }}
 
                                                 <svg
                                                     class="-me-0.5 ms-2 h-4 w-4"
@@ -85,6 +86,16 @@ const showingNavigationDropdown = ref(false);
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>
+                            </div>
+
+                            <!-- Authentication Links -->
+                            <div v-else class="flex gap-4">
+                                <Link href="/login" class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                                    Login
+                                </Link>
+                                <Link href="/register" class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                                    Register
+                                </Link>
                             </div>
                         </div>
 
@@ -157,9 +168,11 @@ const showingNavigationDropdown = ref(false);
                                 class="text-base font-medium text-gray-800"
                             >
                                 <!-- {{ $page.props.auth.user.name }} -->
+                                2
                             </div>
                             <div class="text-sm font-medium text-gray-500">
                                 <!-- {{ $page.props.auth.user.email }} -->
+                                3
                             </div>
                         </div>
 
