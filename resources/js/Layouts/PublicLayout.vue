@@ -161,18 +161,17 @@ const showingNavigationDropdown = ref(false);
 
                     <!-- Responsive Settings Options -->
                     <div
+                        v-if="$page.props.auth?.user"
                         class="border-t border-gray-200 pb-1 pt-4"
                     >
                         <div class="px-4">
                             <div
                                 class="text-base font-medium text-gray-800"
                             >
-                                <!-- {{ $page.props.auth.user.name }} -->
-                                2
+                                {{ $page.props.auth.user.name }}
                             </div>
                             <div class="text-sm font-medium text-gray-500">
-                                <!-- {{ $page.props.auth.user.email }} -->
-                                3
+                                {{ $page.props.auth.user.email }}
                             </div>
                         </div>
 
@@ -187,6 +186,23 @@ const showingNavigationDropdown = ref(false);
                             >
                                 Log Out
                             </ResponsiveNavLink>
+                        </div>
+                    </div>
+                    <div
+                        v-else
+                        class="border-t border-gray-200 pb-1 pt-4"
+                    >
+                        <div class="px-4">
+                            <Link href="/login"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                Login
+                            </Link>
+                            <Link href="/register"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                Register
+                            </Link>
                         </div>
                     </div>
                 </div>
