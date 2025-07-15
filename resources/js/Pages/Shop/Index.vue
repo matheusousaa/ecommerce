@@ -11,9 +11,8 @@ import {
     Loader2
 } from 'lucide-vue-next';
 
-// import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Link } from '@inertiajs/vue3';
-import ProductCard from '@/Components/ProductCard.vue';
+import ShopProductCard from '@/Components/ShopProductCard.vue';
 
 import PublicLayout from '@/Layouts/PublicLayout.vue';
 
@@ -187,7 +186,6 @@ watch([searchQuery, selectedCategory, sortBy], () => {
                 <option value="name">Name</option>
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>
-                <option value="quantity">Stock Quantity</option>
                 <option value="newest">Newest</option>
               </select>
             </div>
@@ -223,7 +221,7 @@ watch([searchQuery, selectedCategory, sortBy], () => {
         </div>
 
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          <ProductCard v-for="product in filteredProducts" :key="product.id" :product="product" />
+          <ShopProductCard v-for="product in filteredProducts" :key="product.id" :product="product" />
         </div>
 
         <!-- Pagination -->
