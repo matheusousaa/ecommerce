@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::redirect('/', '/login');
+Route::redirect('/', '/shop');
+
+Route::get('/shop', [ProductController::class, 'shop'])->name('shop');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [

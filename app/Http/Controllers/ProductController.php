@@ -18,7 +18,10 @@ class ProductController extends Controller
         $products = Product::with('category')->get();
         $categories = Category::all();
 
-        return Inertia::render('Products/Index', ['products' => $products, 'categories' => $categories]);
+        return Inertia::render('Products/Index', [
+            'products' => $products,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -28,7 +31,9 @@ class ProductController extends Controller
     {
         $categories = Category::all();
 
-        return Inertia::render('Products/Create', ['categories' => $categories]);
+        return Inertia::render('Products/Create', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -63,7 +68,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return Inertia::render('Products/Show', ['product' => $product->load('category')]);
+        return Inertia::render('Products/Show', [
+            'product' => $product->load('category')
+        ]);
     }
 
     /**
@@ -73,7 +80,10 @@ class ProductController extends Controller
     {
         $categories = Category::all();
 
-        return Inertia::render('Products/Edit', ['categories' => $categories, 'product' => $product]);
+        return Inertia::render('Products/Edit', [
+            'categories' => $categories,
+            'product' => $product
+        ]);
     }
 
     /**
@@ -112,5 +122,19 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index');
+    }
+
+    /**
+     * Display the shop page with products and categories.
+     */
+    public function shop()
+    {
+        $products = Product::with('category')->get();
+        $categories = Category::all();
+
+        return Inertia::render('Shop/Index', [
+            'products' => $products,
+            'categories' => $categories
+        ]);
     }
 }
