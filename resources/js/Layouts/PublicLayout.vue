@@ -97,6 +97,8 @@ const showingNavigationDropdown = ref(false);
                                     Register
                                 </Link>
                             </div>
+
+                        <slot name="shoppingCart" />
                         </div>
 
                         <!-- Hamburger -->
