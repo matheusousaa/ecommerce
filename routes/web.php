@@ -24,12 +24,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
-
-    Route::resource('products', \App\Http\Controllers\ProductController::class);
-    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
-    Route::resource('orders', \App\Http\Controllers\OrderController::class);
 });
 
 require __DIR__.'/auth.php';
+
+Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus')->middleware('auth');
+
+Route::resource('products', \App\Http\Controllers\ProductController::class)->middleware('auth');
+Route::resource('categories', \App\Http\Controllers\CategoryController::class)->middleware('auth');
+Route::resource('orders', \App\Http\Controllers\OrderController::class)->middleware('auth');
