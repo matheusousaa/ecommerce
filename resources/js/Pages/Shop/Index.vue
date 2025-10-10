@@ -9,47 +9,18 @@ import {
     Plus,
     Eye,
     Loader2,
+    X,
+    Minus,
     ShoppingCartIcon
 } from 'lucide-vue-next';
-
 import { Link } from '@inertiajs/vue3';
 import ShopProductCard from '@/Components/ShopProductCard.vue';
-
 import PublicLayout from '@/Layouts/PublicLayout.vue';
 
 const props = defineProps({
   products: Array,
   categories: Array
 });
-
-function addToCart(product){
-  addToCartWithQuantity(product, 1);
-};
-
-const addToCartWithQuantity = (product, quantity) => {
-  if (product.quantity <= 0) return;
-  
-  const existingItem = cart.value.find(item => item.id === product.id);
-  
-  if (existingItem) {
-    existingItem.quantity += quantity;
-  } else {
-    cart.value.push({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      quantity: quantity
-    });
-  }
-  
-  showToastMessage(`${product.name} added to cart!`);
-  
-  // Close quick view modal if open
-  if (showQuickView.value) {
-    showQuickView.value = false;
-  }
-};
 
 // State
 const products = ref(props.products ?? []);
@@ -61,6 +32,42 @@ const currentPage = ref(1);
 const itemsPerPage = ref(12);
 const showCart = ref(false);
 const cart = ref([]);
+const showToast = ref(false);
+const toastMessage = ref('');
+
+function addToCart(product){
+  addToCartWithQuantity(product, 1);
+};
+
+const addToCartWithQuantity = (product, quantity) => {
+  if (product.quantity <= 0) return;
+  
+  const existingItem = cart.value.find(item => item.id === product.id);
+
+  if (existingItem) {
+    existingItem.quantity += quantity;
+  } else {
+    cart.value.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: quantity
+    });
+  }
+
+  showToastMessage(`${product.name} added to cart!`);
+
+};
+
+const showToastMessage = (message) => {
+  toastMessage.value = message;
+  showToast.value = true;
+  
+  setTimeout(() => {
+    showToast.value = false;
+  }, 3000);
+};
 
 const cartItemsCount = computed(() => {
   return cart.value.reduce((total, item) => total + item.quantity, 0);
@@ -132,6 +139,10 @@ const totalPages = computed(() => {
 
   return Math.ceil(filtered.length / itemsPerPage.value) || 1;
 });
+
+const formatPrice = (price) => {
+  return parseFloat(price).toFixed(2);
+};
 
 // Watch for filter changes to reset pagination
 watch([searchQuery, selectedCategory, sortBy], () => {
@@ -318,7 +329,7 @@ watch([searchQuery, selectedCategory, sortBy], () => {
 
             <div class="mt-8">
               <div v-if="cart.length === 0" class="text-center py-12">
-                <ShoppingCart class="mx-auto h-12 w-12 text-gray-400" />
+                <ShoppingCartIcon class="mx-auto h-12 w-12 text-gray-400" />
                 <h3 class="mt-2 text-sm font-medium text-gray-900">Your cart is empty</h3>
                 <p class="mt-1 text-sm text-gray-500">Start adding some products!</p>
               </div>
