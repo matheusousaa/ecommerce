@@ -60,6 +60,22 @@ const addToCartWithQuantity = (product, quantity) => {
 
 };
 
+const updateCartQuantity = (productId, newQuantity) => {
+  if (newQuantity <= 0) {
+    removeFromCart(productId);
+    return;
+  }
+  
+  const item = cart.value.find(item => item.id === productId);
+  if (item) {
+    item.quantity = newQuantity;
+  }
+};
+
+const removeFromCart = (productId) => {
+  cart.value = cart.value.filter(item => item.id !== productId);
+};
+
 const showToastMessage = (message) => {
   toastMessage.value = message;
   showToast.value = true;
