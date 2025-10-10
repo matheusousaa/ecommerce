@@ -354,7 +354,7 @@ watch([searchQuery, selectedCategory, sortBy], () => {
                 <ul class="-my-6 divide-y divide-gray-200">
                   <li v-for="item in cart" :key="item.id" class="py-6 flex">
                     <div class="flex-shrink-0 w-16 h-16 border border-gray-200 rounded-md overflow-hidden">
-                      <img :src="item.image || '/placeholder.svg'" :alt="item.name" class="w-full h-full object-center object-cover">
+                      <img :src="`/storage/${item.image}` || '/placeholder.svg'" :alt="item.name" class="w-full h-full object-center object-cover">
                     </div>
 
                     <div class="ml-4 flex-1 flex flex-col">
