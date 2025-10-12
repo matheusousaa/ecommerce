@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import { router } from '@inertiajs/vue3';
 import {
     Search,
@@ -164,6 +164,20 @@ const formatPrice = (price) => {
 watch([searchQuery, selectedCategory, sortBy], () => {
   currentPage.value = 1;
 });
+
+// Lifecycle hooks
+onMounted(() => {
+  // Load cart from localStorage if available
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) {
+    cart.value = JSON.parse(savedCart);
+  }
+});
+
+// Save cart to localStorage whenever it changes
+watch(cart, (newCart) => {
+  localStorage.setItem('cart', JSON.stringify(newCart));
+}, { deep: true });
 </script>
 
 <style>
