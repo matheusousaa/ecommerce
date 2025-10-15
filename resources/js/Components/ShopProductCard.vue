@@ -34,7 +34,7 @@ const formatPrice = (price) => {
             <div class="flex justify-between items-start">
                 <h3 class="text-lg font-medium text-gray-900 truncate">{{ product.name }}</h3>
             </div>
-            <p class="mt-1 text-sm text-gray-500 line-clamp-2">{{ product.description }}</p>
+            <p class="mt-1 text-sm text-gray-500 line-clamp-2 min-h-[40px]">{{ product.description }}</p>
             <div class="mt-2 flex items-center justify-between">
                 <span class="text-lg font-bold text-gray-900">${{ formatPrice(product.price) }}</span>
                 <button
