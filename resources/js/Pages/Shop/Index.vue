@@ -1,12 +1,12 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue';
 import {
-    Search,
-    ChevronLeft,
-    ChevronRight,
-    PackageX,
-    Plus,
-    ShoppingCartIcon
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  PackageX,
+  Plus,
+  ShoppingCartIcon
 } from 'lucide-vue-next';
 import { Link } from '@inertiajs/vue3';
 import ShopProductCard from '@/Components/ShopProductCard.vue';
@@ -31,13 +31,13 @@ const cart = ref([]);
 const showToast = ref(false);
 const toastMessage = ref('');
 
-function addToCart(product){
+function addToCart(product) {
   addToCartWithQuantity(product, 1);
 };
 
 const addToCartWithQuantity = (product, quantity) => {
   if (product.quantity <= 0) return;
-  
+
   const existingItem = cart.value.find(item => item.id === product.id);
 
   if (existingItem) {
@@ -61,7 +61,7 @@ const updateCartQuantity = (productId, newQuantity) => {
     removeItemFromCart(productId);
     return;
   }
-  
+
   const item = cart.value.find(item => item.id === productId);
   if (item) {
     item.quantity = newQuantity;
@@ -75,7 +75,7 @@ const removeItemFromCart = (productId) => {
 const showToastMessage = (message) => {
   toastMessage.value = message;
   showToast.value = true;
-  
+
   setTimeout(() => {
     showToast.value = false;
   }, 3000);
@@ -229,15 +229,10 @@ watch(cart, (newCart) => {
   <PublicLayout>
     <template v-slot:shoppingCart>
       <div class="flex items-center space-x-4">
-        <button 
-          @click="showCart = true"
-          class="relative p-2 text-gray-600 hover:text-primary transition-colors"
-        >
+        <button @click="showCart = true" class="relative p-2 text-gray-600 hover:text-primary transition-colors">
           <ShoppingCartIcon class="h-6 w-6" />
-          <span 
-            v-if="cartItemsCount > 0"
-            class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
-          >
+          <span v-if="cartItemsCount > 0"
+            class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
             {{ cartItemsCount }}
           </span>
         </button>
@@ -278,7 +273,7 @@ watch(cart, (newCart) => {
               <div class="relative">
                 <Search class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input type="text" placeholder="Search products..." v-model="searchQuery"
-                    class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" />
+                  class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" />
               </div>
             </div>
           </div>
@@ -302,12 +297,8 @@ watch(cart, (newCart) => {
         </div>
 
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          <ShopProductCard 
-            v-for="product in filteredProducts"
-            :key="product.id"
-            :product="product"
-            @add-to-cart="addToCart"
-          />
+          <ShopProductCard v-for="product in filteredProducts" :key="product.id" :product="product"
+            @add-to-cart="addToCart" />
         </div>
 
         <!-- Pagination -->
@@ -338,13 +329,7 @@ watch(cart, (newCart) => {
       </div>
     </div>
 
-    <CartSidebar
-      :showCart="showCart"
-      :cart="cart"
-      :cartTotal="cartTotal"
-      @close="showCart = false"
-      @update-cart-quantity="updateCartQuantity"
-      @remove-item-from-cart="removeItemFromCart"
-    />
+    <CartSidebar :showCart="showCart" :cart="cart" :cartTotal="cartTotal" @close="showCart = false"
+      @update-cart-quantity="updateCartQuantity" @remove-item-from-cart="removeItemFromCart" />
   </PublicLayout>
 </template>

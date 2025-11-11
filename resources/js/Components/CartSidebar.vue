@@ -48,12 +48,13 @@ const formatPrice = (price) => {
               <h3 class="mt-2 text-sm font-medium text-gray-900">Your cart is empty</h3>
               <p class="mt-1 text-sm text-gray-500">Start adding some products!</p>
             </div>
-            
+
             <div v-else class="flow-root">
               <ul class="-my-6 divide-y divide-gray-200">
                 <li v-for="item in cart" :key="item.id" class="py-6 flex">
                   <div class="flex-shrink-0 w-16 h-16 border border-gray-200 rounded-md overflow-hidden">
-                    <img :src="`/storage/${item.image}` || '/placeholder.svg'" :alt="item.name" class="w-full h-full object-center object-cover">
+                    <img :src="`/storage/${item.image}` || '/placeholder.svg'" :alt="item.name"
+                      class="w-full h-full object-center object-cover">
                   </div>
 
                   <div class="ml-4 flex-1 flex flex-col">
@@ -65,24 +66,20 @@ const formatPrice = (price) => {
                     </div>
                     <div class="flex-1 flex items-end justify-between text-sm">
                       <div class="flex items-center space-x-2">
-                        <button
-                          @click="handleUpdateCartQuantity(item.id, item.quantity - 1)"
-                          class="p-1 rounded-md border border-gray-300 hover:bg-gray-50"
-                          :disabled="item.quantity <= 1"
-                        >
+                        <button @click="handleUpdateCartQuantity(item.id, item.quantity - 1)"
+                          class="p-1 rounded-md border border-gray-300 hover:bg-gray-50" :disabled="item.quantity <= 1">
                           <Minus class="h-3 w-3" />
                         </button>
                         <span class="text-gray-500">Qty {{ item.quantity }}</span>
-                        <button
-                          @click="handleUpdateCartQuantity(item.id, item.quantity + 1)"
-                          class="p-1 rounded-md border border-gray-300 hover:bg-gray-50"
-                        >
+                        <button @click="handleUpdateCartQuantity(item.id, item.quantity + 1)"
+                          class="p-1 rounded-md border border-gray-300 hover:bg-gray-50">
                           <Plus class="h-3 w-3" />
                         </button>
                       </div>
 
                       <div class="flex">
-                        <button @click="handleRemoveItemFromCart(item.id)" class="font-medium text-primary hover:text-primary-dark">
+                        <button @click="handleRemoveItemFromCart(item.id)"
+                          class="font-medium text-primary hover:text-primary-dark">
                           Remove
                         </button>
                       </div>
@@ -101,13 +98,14 @@ const formatPrice = (price) => {
           </div>
           <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
           <div class="mt-6">
-            <button class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary-dark">
+            <button
+              class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary-dark">
               Checkout
             </button>
           </div>
           <div class="mt-6 flex justify-center text-sm text-center text-gray-500">
             <p>
-              or 
+              or
               <button @click="handleClose" class="text-primary font-medium hover:text-primary-dark">
                 Continue Shopping<span aria-hidden="true"> &rarr;</span>
               </button>
