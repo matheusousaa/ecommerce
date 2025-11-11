@@ -14,11 +14,11 @@ function handleClose() {
 }
 
 function handleUpdateCartQuantity(productId, newQuantity) {
-  emit('update-cart-quantity', { productId, newQuantity });
+  emit('update-cart-quantity', productId, newQuantity);
 }
 
 function handleRemoveItemFromCart(productId) {
-  emit('remove-item-from-Cart', productId);
+  emit('remove-item-from-cart', productId);
 }
 
 const formatPrice = (price) => {
@@ -30,7 +30,7 @@ const formatPrice = (price) => {
 <template>
   <div v-if="showCart" class="fixed inset-0 overflow-hidden z-50">
     <div class="absolute inset-0 overflow-hidden">
-      <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="showCart = false"></div>
+      <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="handleClose"></div>
       <section class="absolute right-0 top-0 h-full w-full max-w-md flex flex-col bg-white shadow-xl">
         <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
           <div class="flex items-start justify-between">

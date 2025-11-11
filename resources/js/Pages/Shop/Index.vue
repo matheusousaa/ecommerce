@@ -58,7 +58,7 @@ const addToCartWithQuantity = (product, quantity) => {
 
 const updateCartQuantity = (productId, newQuantity) => {
   if (newQuantity <= 0) {
-    removeFromCart(productId);
+    removeItemFromCart(productId);
     return;
   }
   
