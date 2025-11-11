@@ -1,5 +1,8 @@
 <script setup>
+import { watch, onMounted } from 'vue';
 import { X, Plus, Minus, ShoppingCartIcon } from 'lucide-vue-next';
+import { useForm } from '@inertiajs/vue3';
+import axios from 'axios';
 
 const props = defineProps({
   showCart: Boolean,
@@ -7,7 +10,46 @@ const props = defineProps({
   cartTotal: Number
 });
 
+onMounted(() => {
+  form.cart = props.cart ?? [];
+  form.cart_total = props.cartTotal ?? 0;
+});
+
+watch(() => props.cart, (newCart) => {
+  form.cart = newCart ?? [];
+}, { deep: true });
+
+watch(() => props.cartTotal, (newTotal) => {
+  form.cart_total = newTotal ?? 0;
+});
+
 const emit = defineEmits(['close', 'update-cart-quantity', 'remove-item-from-cart']);
+
+const formatPrice = (price) => {
+  return parseFloat(price).toFixed(2);
+};
+
+const form = useForm({
+    cart: [],
+    cart_total: 0,
+});
+
+const submit = async () => {
+  try {
+    const res = await axios.post('/shop/checkout', {
+      cart: form.cart,
+      cart_total: form.cart_total,
+    });
+
+    if (res.data && res.data.url) {
+      window.location.href = res.data.url;
+    } else {
+      console.error('No checkout URL returned', res.data);
+    }
+  } catch (err) {
+    console.error('Checkout error', err);
+  }
+}
 
 function handleClose() {
   emit('close');
@@ -20,11 +62,6 @@ function handleUpdateCartQuantity(productId, newQuantity) {
 function handleRemoveItemFromCart(productId) {
   emit('remove-item-from-cart', productId);
 }
-
-const formatPrice = (price) => {
-  return parseFloat(price).toFixed(2);
-};
-
 </script>
 
 <template>
@@ -98,10 +135,12 @@ const formatPrice = (price) => {
           </div>
           <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
           <div class="mt-6">
-            <button
-              class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary-dark">
-              Checkout
-            </button>
+            <form @submit.prevent="submit">
+              <button
+                class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary-dark">
+                Checkout
+              </button>
+            </form>
           </div>
           <div class="mt-6 flex justify-center text-sm text-center text-gray-500">
             <p>

@@ -137,4 +137,45 @@ class ProductController extends Controller
             'categories' => $categories
         ]);
     }
+
+    public function checkout(Request $request)
+    {
+        $cartItems = $request->cart;
+
+        foreach ($cartItems as $item) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => $item['name'],
+                        'images' => [asset("storage/{$item['image']}")]
+                    ],
+                    'unit_amount' => round($item['price'] * 100),
+                ],
+                'quantity' => $item['quantity'],
+            ];
+        }
+
+        try {
+            $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
+            $session = $stripe->checkout->sessions->create([
+                'line_items' => $lineItems,
+                'mode' => 'payment',
+                'success_url' => route('checkout.success', [], true),
+                'cancel_url'  => route('checkout.cancel', [], true),
+            ]);
+
+            return response()->json(['url' => $session->url]);
+        } catch (\Throwable $e) {
+            return response()->json(['error' => 'Unable to create Stripe session'], 500);
+        }
+    }
+
+    public function success() {
+        echo("SUCCESS!!!");
+    }
+
+    public function cancel() {
+        echo("CANCEL!!??!");
+    }
 }

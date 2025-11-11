@@ -33,3 +33,7 @@ Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
 Route::resource('products', \App\Http\Controllers\ProductController::class)->middleware('auth');
 Route::resource('categories', \App\Http\Controllers\CategoryController::class)->middleware('auth');
 Route::resource('orders', \App\Http\Controllers\OrderController::class)->middleware('auth');
+
+Route::post('/shop/checkout', [ProductController::class, 'checkout'])->name('checkout');
+Route::get('/shop/checkout/success', [ProductController::class, 'success'])->name('checkout.success');
+Route::get('/shop/checkout/cancel', [ProductController::class, 'cancel'])->name('checkout.cancel');
